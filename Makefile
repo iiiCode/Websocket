@@ -1,8 +1,8 @@
 CC 		= gcc
-CFLAGS 	= -Wall -Wextra -Werror -pedantic -ggdb -DRUPIFY -g
+CFLAGS 	= -Wall -Wextra -Werror -Wno-variadic-macros -pedantic -ggdb -DRUPIFY -g
 
 INCL 	= Handshake.c
-OBJECTS = Errors.o Datastructures.o Communicate.o sha1.o md5.o base64.o utf8.o
+OBJECTS = Errors.o Datastructures.o Communicate.o sha1.o md5.o base64.o utf8.o UDP.o
 EXEC 	= Websocket
 
 .PHONY: Websocket
@@ -41,3 +41,6 @@ Datastructures.o: Datastructures.c Datastructures.h
 
 Errors.o: Errors.c Errors.h Datastructures.h
 	$(CC) $(CFLAGS) -c Errors.c
+
+UDP.o: Socket.h
+	$(CC) $(CFLAGS) -c UDP.c
